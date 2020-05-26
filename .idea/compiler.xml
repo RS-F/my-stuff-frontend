@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true">
+        <processorPath useClasspath="false">
+          <entry name="$APPLICATION_PLUGINS_DIR$/lombok-plugin/lib/lombok-plugin-0.29-2019.2.jar" />
+        </processorPath>
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
