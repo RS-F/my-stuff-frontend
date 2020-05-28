@@ -17,11 +17,12 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="90"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:weightSum="40"
             android:padding="8dp">
 
             <TextView
@@ -29,19 +30,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
-                android:text="@{`Name - ` + item.name}" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@{item.name}" />
             <TextView
                 android:id="@+id/itemDesciption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
-                android:text="@{`Desc - ` + item.description}" />
+                android:text="@{item.description}" />
             <TextView
                 android:id="@+id/itemLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
-                android:text="@{`Loc - ` + item.location}" />
+                android:text="@{item.location}" />
         </LinearLayout>
     </LinearLayout>
 

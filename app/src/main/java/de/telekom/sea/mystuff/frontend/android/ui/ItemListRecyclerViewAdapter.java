@@ -13,11 +13,14 @@ import de.telekom.sea.mystuff.frontend.android.R;
 import de.telekom.sea.mystuff.frontend.android.databinding.MyStuffItemBinding;
 import de.telekom.sea.mystuff.frontend.android.model.Item;
 import lombok.Getter;
+import timber.log.Timber;
 
 public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRecyclerViewAdapter.ViewHolder> {
 
     @Getter
     private final List<Item> itemList;
+    private int createCounter;
+    private int bindCounter;
 
     public ItemListRecyclerViewAdapter(List<Item> itemList) {
         this.itemList = itemList;
@@ -36,6 +39,7 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRe
         MyStuffItemBinding listItemBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                         R.layout.my_stuff_item, parent, false);
+        Timber.d("--> onCreateViewHolder " + ++createCounter);
         return new ViewHolder(listItemBinding);
     }
 
@@ -43,6 +47,7 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Item item = this.itemList.get(position);
         holder.binding.setItem(item);
+        Timber.d("--> onBindViewHolder   " + ++bindCounter);
     }
 
     @Override

@@ -32,27 +32,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-        MyStuffItemBinding myStuffItemBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+//        MyStuffItemBinding myStuffItemBinding =
+//                DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         // bind RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rv_items);
+        recyclerView = findViewById(R.id.rv_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
 
         viewModel = new ViewModelProvider(this).get(ItemListViewModel.class);
         viewModel.initWithApplication(getApplication());
         adapter = new ItemListRecyclerViewAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
         getAllItems();
     }
 
     private void getAllItems() {
-        viewModel.getItems().observe(this, new Observer<ApiResponse<List<Item>>>() {
-            @Override
-            public void onChanged(ApiResponse<List<Item>> listApiResponse) {
-                adapter.getItemList();
+        viewModel.getItems().observe(this, apiResponse -> {
+            if (apiResponse.isSuccessful()) {
+                adapter.updateItemList(apiResponse.body);
+            } else {
+                ((MyStuffApplication) getApplication()).getMyStuffContext().sendInfoMessage(apiResponse.errorMessage);
             }
         });
     }
