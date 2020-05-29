@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import de.telekom.sea.mystuff.frontend.android.api.ApiFactory;
+import de.telekom.sea.mystuff.frontend.android.api.ItemApi;
+import de.telekom.sea.mystuff.frontend.android.repo.ItemRepo;
 import lombok.Getter;
 import timber.log.Timber;
 
@@ -15,14 +17,18 @@ import timber.log.Timber;
  */
 public class MyStuffContext {
 
+    private MyStuffApplication app;
+
     @Getter
     private ApiFactory apiFactory;
 
-    private MyStuffApplication app;
+    @Getter
+    private ItemRepo itemRepo;
 
     void initWithApplication(MyStuffApplication app){
         this.app = app;
         this.apiFactory = new ApiFactory();
+        this.itemRepo = new ItemRepo(apiFactory.createApi(ItemApi.class));
     }
 
     public String getString(int resId) {
