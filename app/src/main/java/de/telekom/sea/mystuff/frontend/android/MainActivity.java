@@ -39,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ItemListRecyclerViewAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
+        refreshLayout = findViewById(R.id.refreshItemListLayout);
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAllItems();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
         getAllItems();
     }
 
@@ -47,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
             if (apiResponse.isSuccessful()) {
                 adapter.updateItemList(apiResponse.body);
             } else {
-                ((MyStuffApplication) getApplication()).getMyStuffContext().sendInfoMessage(apiResponse.errorMessage);
+                ((MyStuffApplication) getApplication()).getMyStuffContext().
+                        sendInfoMessage(apiResponse.errorMessage);
             }
         });
     }
