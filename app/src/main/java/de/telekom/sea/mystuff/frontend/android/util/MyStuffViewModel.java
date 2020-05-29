@@ -8,12 +8,12 @@ import de.telekom.sea.mystuff.frontend.android.MyStuffApplication;
 import de.telekom.sea.mystuff.frontend.android.MyStuffContext;
 import lombok.Getter;
 
-public class ItemViewModel extends ViewModel {
+public class MyStuffViewModel extends ViewModel {
 
     @Getter
     private MyStuffContext myStuffContext;
 
-    public ItemViewModel() {
+    public MyStuffViewModel() {
         super();
     }
 
