@@ -13,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.telekom.sea.mystuff.frontend.android.R;
+import de.telekom.sea.mystuff.frontend.android.util.ItemListViewModel;
 
 public class ItemListFragment extends Fragment {
 
-    private ItemListViewModel mViewModel;
+    private ItemListViewModel viewModel;
 
-    public static ItemListFragment newInstance() {
-        return new ItemListFragment();
-    }
+//    public static ItemListFragment newInstance() {
+//        return new ItemListFragment();
+//    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -29,9 +30,9 @@ public class ItemListFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ItemListViewModel.class);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = ViewModelProviders.of(this).get(ItemListViewModel.class);
         // TODO: Use the ViewModel
     }
 

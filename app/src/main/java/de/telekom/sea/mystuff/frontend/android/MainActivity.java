@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MyStuffItemBinding myStuffItemBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
         viewModel = new ViewModelProvider(this).get(ItemListViewModel.class);
         viewModel.initWithApplication(getApplication());
