@@ -1,37 +1,28 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import java.util.ArrayList;
 
-import de.telekom.sea.mystuff.frontend.android.MyStuffApplication;
 import de.telekom.sea.mystuff.frontend.android.R;
-import de.telekom.sea.mystuff.frontend.android.util.ItemListViewModel;
 
 public class ItemListFragment extends Fragment {
 
-    private SwipeRefreshLayout refreshLayout;
-    private ItemListViewModel viewModel;
     private ItemListRecyclerViewAdapter adapter;
-
-//    public static ItemListFragment newInstance() {
-//        return new ItemListFragment();
-//    }
+    private ItemListViewModel viewModel;
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
