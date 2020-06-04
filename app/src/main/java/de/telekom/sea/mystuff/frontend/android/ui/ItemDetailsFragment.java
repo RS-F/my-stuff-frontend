@@ -1,5 +1,6 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -12,11 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.sql.Date;
+
 import de.telekom.sea.mystuff.frontend.android.R;
+import de.telekom.sea.mystuff.frontend.android.databinding.ItemDetailsFragmentBinding;
+import de.telekom.sea.mystuff.frontend.android.model.Item;
 
 public class ItemDetailsFragment extends Fragment {
 
-    private ItemDetailsViewModel mViewModel;
+    private ItemDetailsFragmentBinding binding;
 
     public static ItemDetailsFragment newInstance() {
         return new ItemDetailsFragment();
@@ -25,14 +30,21 @@ public class ItemDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.item_details_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.item_details_fragment, container, false);
+//        return inflater.inflate(R.layout.item_details_fragment, container, false);
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ItemDetailsViewModel.class);
-        // TODO: Use the ViewModel
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Item item = new Item();
+        item.setName("Bla");
+        item.setDescription("Blubb");
+        item.setLocation("hier");
+        item.setAmount(3);
+        item.setLastUsed(Date.valueOf("2020-05-01"));
+        binding.setItem(item);
     }
 
 }

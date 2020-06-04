@@ -36,8 +36,9 @@ android {
 
 }
 
+def navVersion = '2.3.0-beta01'
+
 dependencies {
-    def navVersion = '2.3.0-beta01'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
