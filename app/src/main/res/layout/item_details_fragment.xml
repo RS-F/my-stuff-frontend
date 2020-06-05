@@ -54,5 +54,6 @@
                 android:hint="Location"
                 android:text="@={item.location}" />
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 </layout>
