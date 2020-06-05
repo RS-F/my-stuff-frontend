@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -28,15 +29,15 @@ public class ItemListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(ItemListViewModel.class);
-        adapter = new ItemListRecyclerViewAdapter(new ArrayList<>());
         return inflater.inflate(R.layout.item_list_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(ItemListViewModel.class);
         viewModel.initWithApplication(getActivity().getApplication());
+        adapter = new ItemListRecyclerViewAdapter(new ArrayList<>(), Navigation.findNavController(view));
 
         // bind RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_items);
@@ -55,6 +56,7 @@ public class ItemListFragment extends Fragment {
 
         getAllItems();
     }
+
     private void getAllItems() {
         viewModel.getItems().observe(this.getViewLifecycleOwner(), apiResponse -> {
             if (apiResponse.isSuccessful()) {

@@ -1,12 +1,14 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -23,12 +25,15 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRe
 
     @Getter
     private final List<Item> itemList;
+    private final NavController navController;
+
 
     private int createCounter;
     private int bindCounter;
 
-    public ItemListRecyclerViewAdapter(List<Item> list) {
+    public ItemListRecyclerViewAdapter(List<Item> list, NavController navController) {
         this.itemList = list;
+        this.navController = navController;
     }
 
     public void updateItemList(List<Item> list) {
@@ -52,6 +57,14 @@ public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRe
         final Item item = this.itemList.get(position);
         holder.binding.setItem(item);
         Timber.d("--> onBindViewHolder   " + ++bindCounter);
+        holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("itemId", item.getId());
+                navController.navigate(R.id.action_itemListFragment_to_itemDetailsFragment, bundle);
+            }
+        });
     }
 
     @Override

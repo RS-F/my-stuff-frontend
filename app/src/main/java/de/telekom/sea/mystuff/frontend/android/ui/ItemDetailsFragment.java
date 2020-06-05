@@ -18,6 +18,7 @@ import java.sql.Date;
 import de.telekom.sea.mystuff.frontend.android.R;
 import de.telekom.sea.mystuff.frontend.android.databinding.ItemDetailsFragmentBinding;
 import de.telekom.sea.mystuff.frontend.android.model.Item;
+import timber.log.Timber;
 
 public class ItemDetailsFragment extends Fragment {
 
@@ -38,6 +39,9 @@ public class ItemDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        long itemId = getArguments().getLong("itemId");
+        Timber.d("--> Clicked row: " +  itemId);
+
         Item item = new Item();
         item.setName("Bla");
         item.setDescription("Blubb");
