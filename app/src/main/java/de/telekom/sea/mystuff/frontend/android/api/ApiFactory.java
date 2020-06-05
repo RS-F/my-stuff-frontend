@@ -16,11 +16,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiFactory {
 
+    private static ApiFactory instance;
+
     @Getter
     private final Retrofit retrofit;
     @Getter
     private final String baseRestUrl;
     private final String hostName;
+    private final OkHttpClient okHttpClient;
+
+    public static synchronized ApiFactory getInstance() {
+        if (instance == null) {
+            instance = new ApiFactory();
+        }
+        return instance;
+    }
+
     /**
      * place real IP address of backend machine here
      * needs a
@@ -40,7 +51,6 @@ public class ApiFactory {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        OkHttpClient okHttpClient;
 
 
             // create OkHttp client
