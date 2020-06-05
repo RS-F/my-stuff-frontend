@@ -1,6 +1,8 @@
 package de.telekom.sea.mystuff.frontend.android.ui;
 
+
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,27 +13,29 @@ import java.util.List;
 
 import de.telekom.sea.mystuff.frontend.android.R;
 import de.telekom.sea.mystuff.frontend.android.databinding.MyStuffItemBinding;
+import de.telekom.sea.mystuff.frontend.android.databinding.MyStuffItemBindingImpl;
 import de.telekom.sea.mystuff.frontend.android.model.Item;
 import lombok.Getter;
 import timber.log.Timber;
 
 public class ItemListRecyclerViewAdapter extends RecyclerView.Adapter<ItemListRecyclerViewAdapter.ViewHolder> {
 
+
     @Getter
     private final List<Item> itemList;
+
     private int createCounter;
     private int bindCounter;
 
-    public ItemListRecyclerViewAdapter(List<Item> itemList) {
-        this.itemList = itemList;
+    public ItemListRecyclerViewAdapter(List<Item> list) {
+        this.itemList = list;
     }
 
-    public void updateItemList(List<Item> newList) {
+    public void updateItemList(List<Item> list) {
         this.itemList.clear();
-        this.itemList.addAll(newList);
+        this.itemList.addAll(list);
         notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override

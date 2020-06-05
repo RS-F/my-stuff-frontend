@@ -16,12 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiFactory {
 
+    @Getter
     private final Retrofit retrofit;
     @Getter
     private final String baseRestUrl;
     private final String hostName;
-    private OkHttpClient okHttpClient;
-
     /**
      * place real IP address of backend machine here
      * needs a
@@ -32,18 +31,23 @@ public class ApiFactory {
 
     public ApiFactory() {
 
-        final String protocol = BuildConfig.apifactory_protocol;
-        final String port = BuildConfig.apifactory_port;
-
         this.hostName = BuildConfig.apifactory_hostname;
+        String protocol = BuildConfig.apifactory_protocol;
+        String port = BuildConfig.apifactory_port;
+
         this.baseRestUrl = protocol + "://" + hostName + ":" + port;
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build();
+        OkHttpClient okHttpClient;
+
+
+            // create OkHttp client
+            okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(loggingInterceptor)
+                    .build();
+
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -56,8 +60,6 @@ public class ApiFactory {
                 .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .client(okHttpClient)
                 .build();
-
-
     }
 
     /**

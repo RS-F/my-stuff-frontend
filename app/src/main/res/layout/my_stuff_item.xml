@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_Layout">
+    android:id="@+id/itemLayout">
 
     <data>
 
@@ -13,39 +13,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_itemName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="90"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:weightSum="40"
-            android:padding="8dp">
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:hint="Name"
+            android:text="@{item.name}" />
 
-            <TextView
-                android:id="@+id/itemName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@{item.name}" />
-            <TextView
-                android:id="@+id/itemDesciption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="20"
-                android:text="@{item.description}" />
-            <TextView
-                android:id="@+id/itemLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:text="@{item.location}" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_itemDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Description"
+            android:text="@{item.description}" />
+
+        <TextView
+            android:id="@+id/tv_itemLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Location"
+            android:text="@{item.location}" />
     </LinearLayout>
-
 </layout>

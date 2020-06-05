@@ -10,11 +10,14 @@ import timber.log.Timber;
 
 public class MyStuffApplication extends Application {
 
-    @Getter
     private static MyStuffApplication instance;
 
     @Getter
     private MyStuffContext myStuffContext;
+
+    public static MyStuffApplication getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
@@ -43,5 +46,4 @@ public class MyStuffApplication extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
-    }
-}
+    }}
